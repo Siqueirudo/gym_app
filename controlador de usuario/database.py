@@ -10,7 +10,9 @@ CREATE TABLE IF NOT EXISTS USUARIO (
    Nome TEXT NOT NULL,
    Celular TEXT NOT NULL,
    Login TEXT NOT NULL,
-   Senha TEXT NOT NULL                            
+   Senha TEXT NOT NULL,
+   Peso TEXT DEFAULT '0',   
+   Altura TEXT DEFAULT '0'
 );
 
 """)

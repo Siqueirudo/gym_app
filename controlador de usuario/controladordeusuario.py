@@ -133,7 +133,7 @@ def register():
             #mostrar a mensagem que a conta foi criada
             messagebox.showinfo(title="info registro", message="Conta criada!")
             janela.destroy()  # Fechar a janela de login
-            subprocess.Popen(["python", "teste.py",login]) 
+            subprocess.Popen(["python", "cadastrosaude.py",login]) 
             
     #botao para registrar as informaçoes no bd
     registrarlabel1 = Button(janela,text='Registrar',width=20, command= registertodb)

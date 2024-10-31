@@ -2,6 +2,7 @@ import sys
 from tkinter import *
 from tkinter import messagebox
 import subprocess
+import database
 
 # Pegar o argumento do nome de usuário
 username = sys.argv[1] if len(sys.argv) > 1 else "Usuário desconhecido"
@@ -49,5 +50,23 @@ alturalabel= Label(janela,text="altura(cm):",font=("Century Gothic", 20), bg="MI
 alturalabel.place(x=400,y=300)
 alturaentry = Entry(janela,width=30)
 alturaentry.place(x=550,y=314)
+
+def enviar():
+    peso = pesoentry.get()
+    altura =alturaentry.get()
+
+    if peso == "" or altura == "":
+        messagebox.showerror(title="erro de cadastro", message="por favor nao deixe campos em branco")
+    else:
+        database.cursor.execute("""
+         UPDATE USUARIO SET Peso = ?, Altura = ? WHERE Login = ?
+        """, (peso, altura, username))
+        database.conn.commit()
+        messagebox.showinfo(title="info registro", message="Conta criada!")
+        janela.destroy()  # Fechar a janela de login
+        subprocess.Popen(["python", "testelogindireto.py",peso,altura,username])
+
+botaotreino = Button(janela, text="enviar", width=20, command=enviar)
+botaotreino.place(x=600, y=500)
 
 janela.mainloop()
