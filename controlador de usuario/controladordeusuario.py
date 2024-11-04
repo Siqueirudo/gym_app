@@ -75,7 +75,7 @@ def login():
             #mostrar na tela acesso confirmado
             messagebox.showinfo(title="login info",message="acesso confirmado. Bem Vindo!") 
             janela.destroy()  # Fechar a janela de login
-            subprocess.Popen(["python","testelogindireto.py",login1])
+            subprocess.Popen(["python","testelogindireto.py",login1,login1,login1])
 
     # se der erro
     except:  

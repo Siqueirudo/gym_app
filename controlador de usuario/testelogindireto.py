@@ -3,6 +3,7 @@ from tkinter import *
 from tkinter import messagebox
 import subprocess
 import sys
+import database
 
 # Pegar o argumento do nome de usuário
 
@@ -14,7 +15,7 @@ def obter_dados_usuario(username):
     try:
         conn = sqlite3.connect('users.db')  # Substitua 'users.db' pelo caminho do seu banco
         cursor = conn.cursor()
-        cursor.execute("SELECT peso, altura FROM USUARIO WHERE Login = ?", (username,))
+        cursor.execute("SELECT Peso, Altura FROM USUARIO WHERE Login = ?", (username,))
         dados = cursor.fetchone()
         conn.close()
         return dados if dados else ("peso desconhecido", "altura desconhecida")
