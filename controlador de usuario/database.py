@@ -11,11 +11,11 @@ CREATE TABLE IF NOT EXISTS USUARIO (
    Celular TEXT NOT NULL,
    Login TEXT NOT NULL,
    Senha TEXT NOT NULL,
-   Peso TEXT DEFAULT '0',   
-   Altura TEXT DEFAULT '0'
+   Peso FLOAT DEFAULT '0',   
+   Altura FLOAT DEFAULT '0'
 );
 
 """)
 
-print("conectado ao Banco de dados")
+
 
