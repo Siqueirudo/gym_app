@@ -82,7 +82,7 @@ imclabel.place(x=350, y=300)
 try:
     imccalculo = float(peso) / (float(altura) ** 2)
     imcuserlabel = Label(janela, text=f"{imccalculo:.2f}", font=("Century Gothic", 20), bg="MIDNIGHTBLUE", fg="white")
-    imcuserlabel.place(x=350, y=300)
+    imcuserlabel.place(x=420, y=300)
 
     # Exibir situação de acordo com o IMC
     if imccalculo < 16.9:
@@ -90,22 +90,22 @@ try:
         situaçaolabel.place(x=420, y=400)
     elif imccalculo >= 17 and imccalculo <= 18.4:
         situaçaolabel = Label(janela, text="Abaixo Do Peso", font=("Century Gothic", 20), bg="MIDNIGHTBLUE", fg="white")
-        situaçaolabel.place(x=400, y=400)
+        situaçaolabel.place(x=420, y=400)
     elif imccalculo >= 18.5 and imccalculo <= 24.9:
         situaçaolabel = Label(janela, text="Peso normal", font=("Century Gothic", 20), bg="MIDNIGHTBLUE", fg="white")
-        situaçaolabel.place(x=400, y=400)
+        situaçaolabel.place(x=420, y=400)
     elif imccalculo >= 25 and imccalculo <= 29.9:
         situaçaolabel = Label(janela, text="Acima Do Peso", font=("Century Gothic", 20), bg="MIDNIGHTBLUE", fg="white")
-        situaçaolabel.place(x=400, y=400)
+        situaçaolabel.place(x=420, y=400)
     elif imccalculo >= 30 and imccalculo <= 34.9:
         situaçaolabel = Label(janela, text="Obesidade Grau I", font=("Century Gothic", 20), bg="MIDNIGHTBLUE", fg="white")
-        situaçaolabel.place(x=400, y=400)
+        situaçaolabel.place(x=420, y=400)
     elif imccalculo >= 35 and imccalculo <= 40:
         situaçaolabel = Label(janela, text="Obesidade Grau II", font=("Century Gothic", 20), bg="MIDNIGHTBLUE", fg="white")
-        situaçaolabel.place(x=400, y=400)
+        situaçaolabel.place(x=420, y=400)
     elif imccalculo > 40:
         situaçaolabel = Label(janela, text="Obesidade Grau III", font=("Century Gothic", 20), bg="MIDNIGHTBLUE", fg="white")
-        situaçaolabel.place(x=400, y=400)
+        situaçaolabel.place(x=420, y=400)
 except:
     imcuserlabel = Label(janela, text="dados invalidos", font=("Century Gothic", 20), bg="MIDNIGHTBLUE", fg="white")
     imcuserlabel.place(x=420, y=300)
@@ -119,4 +119,12 @@ def sair():
 botaosair = Button(janela, text="Sair", width=20, command=sair)
 botaosair.place(x=320, y=20)
 
+#funçao treino
+def treino():
+    janela.destroy()
+    subprocess.Popen(["python","treino.py",username])
+
+#botao treino
+botaotreino = Button(janela, text="treino", width=20, command=treino)
+botaotreino.place(x=450, y=500)
 janela.mainloop()
