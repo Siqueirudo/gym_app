@@ -124,16 +124,23 @@ def register():
         if (nome == "" or celular == "" or login == "" or senha == ""):
             #exibir mensagem de erro
             messagebox.showerror(title="register erro", message="Não deixe campos em branco")
-        else:  # se nao
+        else:
+            # verificar se o login já existe
+            database.cursor.execute("SELECT * FROM USUARIO WHERE Login = ?", (login,))
+            usuario_existente = database.cursor.fetchone()
+
+            if usuario_existente:
+                messagebox.showerror(title="Erro de registro", message="Usuário já existe")
+            else:  # se nao
             #inserir informaçoes no bd na ordem
-            database.cursor.execute("""
-            INSERT INTO USUARIO(Nome,Celular,Login,Senha) VALUES(?, ?, ?, ?)
-            """, (nome, celular, login, senha))
-            database.conn.commit() #atualizar as informaçoes no bd
-            #mostrar a mensagem que a conta foi criada
-            messagebox.showinfo(title="info registro", message="Conta criada!")
-            janela.destroy()  # Fechar a janela de login
-            subprocess.Popen(["python", "cadastrosaude.py",login]) 
+                database.cursor.execute("""
+                INSERT INTO USUARIO(Nome,Celular,Login,Senha) VALUES(?, ?, ?, ?)
+                """, (nome, celular, login, senha))
+                database.conn.commit() #atualizar as informaçoes no bd
+                #mostrar a mensagem que a conta foi criada
+                messagebox.showinfo(title="info registro", message="Conta criada!")
+                janela.destroy()  # Fechar a janela de login
+                subprocess.Popen(["python", "cadastrosaude.py",login]) 
             
     #botao para registrar as informaçoes no bd
     registrarlabel1 = Button(janela,text='Registrar',width=20, command= registertodb)
